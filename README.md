@@ -11,4 +11,6 @@ Data has to have the following collums:
 
 the "err" column will be removed soon.
 
-The data can be collected using the mocap_data_logger (hyperlink tbd)
+The data can be collected using the mocap_data_logger (https://github.com/aurelappius/Vicon_Csv_logger)
+
+If it doesnt work, delete the first few lines of the data using a text editor
