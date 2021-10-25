@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import sys
+import math
 import os
 import csv
 import statistics
@@ -10,8 +11,10 @@ import statistics
 Start = 0 #start frame
 N = 10000 #how many frames
 Framerate = 100
-POSMAX = [2000,2000,2000] #maximal allowed xyz values>
 show_square_ref = 1 #set 0 to hide, 1 to show
+show_circle_ref = 0 #set 0 to hide, 1 to show
+circle_radius=500
+circle_origin=[500,-500,2000] #xyz
 delete_start_land = 0 #set 0 to keep, 1 to delete
 ref_color = "black" #reference color
 curve_color = "red" #measurement color
@@ -73,6 +76,16 @@ if show_square_ref:
 	x_plt.scatter(tx_t,tx_P,marker='o',s=1, c=ref_color)
 	y_plt.scatter(ty_t,ty_P,marker='o',s=1, c=ref_color)
 	z_plt.scatter(tz_t,tz_P,marker='o',s=1, c=ref_color)
+
+if show_circle_ref:
+	#circle ref
+	phi = np.linspace(0,2*math.pi, num=circle_radius)
+	X_c = np.cos(phi)*circle_radius
+	Y_c = np.sin(phi)*circle_radius
+	Z_c = np.full(circle_radius, circle_origin[2])
+	proj_plt.scatter(X_c+circle_origin[0],Y_c+circle_origin[1],Z_c,marker='o',s=1, c=ref_color)
+
+
 
 ################################################# Plot X,Y,Z
 x_plt.scatter(Time,POS[:,0]-Offset[0],marker='o',s=1, c=curve_color)
